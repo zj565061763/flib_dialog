@@ -55,8 +55,6 @@ class FDialogConfirmView extends StatelessWidget {
     VoidCallback confirmOnPressed,
     @required BuildContext context,
   }) {
-    assert(context != null);
-
     Widget titleWidget;
     if (title != null) {
       if (title == '') {
