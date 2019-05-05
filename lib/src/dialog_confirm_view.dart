@@ -19,35 +19,6 @@ class FDialogConfirmView extends StatelessWidget {
 
   factory FDialogConfirmView.simple({
     String title = '',
-    String content,
-    String cancel = '',
-    VoidCallback cancelOnPressed,
-    String confirm = '',
-    VoidCallback confirmOnPressed,
-    @required BuildContext context,
-  }) {
-    Widget contentWidget;
-    if (content != null) {
-      contentWidget = Text(
-        content,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      );
-    }
-
-    return FDialogConfirmView.customContent(
-      title: title,
-      content: contentWidget,
-      cancel: cancel,
-      cancelOnPressed: cancelOnPressed,
-      confirm: confirm,
-      confirmOnPressed: confirmOnPressed,
-      context: context,
-    );
-  }
-
-  factory FDialogConfirmView.customContent({
-    String title = '',
     Widget content,
     String cancel = '',
     VoidCallback cancelOnPressed,
