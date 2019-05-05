@@ -66,7 +66,7 @@ class FDialogConfirmView extends StatelessWidget {
     FDialogAction confirmWidget;
     if (confirm != null) {
       if (confirm == '') {
-        confirm = FLibDialogLocale.cancel(context);
+        confirm = FLibDialogLocale.confirm(context);
       }
 
       confirmWidget = FDialogAction(
