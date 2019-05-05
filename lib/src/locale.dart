@@ -4,23 +4,24 @@ class FLibDialogLocale {
   FLibDialogLocale._();
 
   static String cancel(BuildContext context, {Locale locale}) {
-    locale ??= Localizations.localeOf(context);
-    return _LibLocale(locale).cancel();
+    return _LibLocale(context, locale).cancel();
   }
 
   static String confirm(BuildContext context, {Locale locale}) {
-    locale ??= Localizations.localeOf(context);
-    return _LibLocale(locale).confirm();
+    return _LibLocale(context, locale).confirm();
   }
 
   static String tips(BuildContext context, {Locale locale}) {
-    locale ??= Localizations.localeOf(context);
-    return _LibLocale(locale).tips();
+    return _LibLocale(context, locale).tips();
   }
 }
 
 abstract class _LibLocale {
-  factory _LibLocale(Locale locale) {
+  factory _LibLocale(BuildContext context, Locale locale) {
+    if (locale == null && context != null) {
+      locale = Localizations.localeOf(context);
+    }
+
     if (locale != null) {
       if ('en' == locale.languageCode) {
         return _LibLocal_EN();
