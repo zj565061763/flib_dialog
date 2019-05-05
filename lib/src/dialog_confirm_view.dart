@@ -55,8 +55,9 @@ class FDialogConfirmView extends StatelessWidget {
     VoidCallback confirmOnPressed,
     @required BuildContext context,
   }) {
-    Widget titleWidget;
+    assert(context != null);
 
+    Widget titleWidget;
     if (title != null) {
       if (title == '') {
         title = FLibDialogLocale.tips(context);
