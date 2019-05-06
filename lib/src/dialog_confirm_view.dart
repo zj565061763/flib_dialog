@@ -21,39 +21,39 @@ class FDialogConfirmView extends StatelessWidget {
     String title = '',
     Widget content,
     String cancel = '',
-    VoidCallback cancelOnPressed,
+    VoidCallback onClickCancel,
     String confirm = '',
-    VoidCallback confirmOnPressed,
+    VoidCallback onClickConfirm,
     @required BuildContext context,
   }) {
-    Widget titleWidget;
+    Widget widgetTitle;
     if (title != null) {
       if (title == '') {
         title = FLibDialogLocale.tips(context);
       }
 
-      titleWidget = Text(
+      widgetTitle = Text(
         title,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       );
     }
 
-    Widget contentWidget = content;
+    Widget widgetContent = content;
 
-    FDialogAction cancelWidget;
+    FDialogAction widgetCancel;
     if (cancel != null) {
       if (cancel == '') {
         cancel = FLibDialogLocale.cancel(context);
       }
 
-      cancelWidget = FDialogAction(
+      widgetCancel = FDialogAction(
         child: Text(
           cancel,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        onPressed: cancelOnPressed,
+        onClick: onClickCancel,
         borderRadius: confirm == null
             ? BorderRadius.only(
                 bottomLeft: Radius.circular(5.0),
@@ -63,19 +63,19 @@ class FDialogConfirmView extends StatelessWidget {
       );
     }
 
-    FDialogAction confirmWidget;
+    FDialogAction widgetConfirm;
     if (confirm != null) {
       if (confirm == '') {
         confirm = FLibDialogLocale.confirm(context);
       }
 
-      confirmWidget = FDialogAction(
+      widgetConfirm = FDialogAction(
         child: Text(
           confirm,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        onPressed: confirmOnPressed,
+        onClick: onClickConfirm,
         borderRadius: cancel == null
             ? BorderRadius.only(
                 bottomLeft: Radius.circular(5.0),
@@ -86,10 +86,10 @@ class FDialogConfirmView extends StatelessWidget {
     }
 
     return FDialogConfirmView(
-      title: titleWidget,
-      content: contentWidget,
-      cancel: cancelWidget,
-      confirm: confirmWidget,
+      title: widgetTitle,
+      content: widgetContent,
+      cancel: widgetCancel,
+      confirm: widgetConfirm,
     );
   }
 
