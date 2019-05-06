@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class FDialogProgressView extends StatelessWidget {
+import 'dialog.dart';
+
+class FDialogProgressView extends StatelessWidget with FDialogViewMixin {
   final String content;
   final double progressSize;
   final double padding;
