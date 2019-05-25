@@ -27,8 +27,8 @@ class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
 
   @override
   void applyDialog(FDialog dialog) {
-    this.dialog = dialog;
-    if (dialog.dialogViewWrapper == null) {
+    super.applyDialog(dialog);
+    if (dialog.dialogViewWrapper == FDialogViewWrapper.defaultWrapper) {
       dialog.dialogViewWrapper = FSimpleDialogViewWrapper(
         alignment: Alignment.bottomCenter,
         shape: RoundedRectangleBorder(

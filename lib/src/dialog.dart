@@ -13,12 +13,14 @@ mixin FDialogViewMixin implements FDialogView {
   void applyDialog(FDialog dialog) {
     this.dialog = dialog;
     if (dialog.dialogViewWrapper == null) {
-      dialog.dialogViewWrapper = FSimpleDialogViewWrapper();
+      dialog.dialogViewWrapper = FDialogViewWrapper.defaultWrapper;
     }
   }
 }
 
 abstract class FDialogViewWrapper {
+  static final FDialogViewWrapper defaultWrapper = FSimpleDialogViewWrapper();
+
   Widget wrap(BuildContext context, Widget widget);
 }
 
@@ -31,7 +33,7 @@ class FDialog {
   /// 窗口关闭监听
   VoidCallback onDismissListener;
 
-  FDialogViewWrapper dialogViewWrapper;
+  FDialogViewWrapper dialogViewWrapper = FDialogViewWrapper.defaultWrapper;
 
   Widget _widget;
   bool _isShowing = false;
