@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'dialog.dart';
 
+const Color _kDefaultBackgroundColor = Colors.white;
+const double _kDefaultElevation = 0;
+const double _kDefaultPaddingWidthPercent = 0.1;
+
 class FOriginalDialogViewWrapper implements FDialogViewWrapper {
   @override
   Widget wrap(BuildContext context, Widget widget) {
@@ -22,12 +26,8 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
     this.elevation,
     this.borderRadius,
     this.padding,
-    this.alignment = Alignment.center,
+    this.alignment,
   });
-
-  static const Color _defaultColor = Colors.white;
-  static const double _defaultElevation = 0;
-  static const double _defaultPaddingWidthPercent = 0.1;
 
   @override
   Widget wrap(BuildContext context, Widget child) {
@@ -40,16 +40,19 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
     final Color targetBackgroundColor = backgroundColor ??
         dialogTheme.backgroundColor ??
         Theme.of(context).dialogBackgroundColor ??
-        _defaultColor;
+        _kDefaultBackgroundColor;
 
     final double targetElevation =
-        elevation ?? dialogTheme.elevation ?? _defaultElevation;
+        elevation ?? dialogTheme.elevation ?? _kDefaultElevation;
 
     final BorderRadiusGeometry targetBorderRadius =
         borderRadius ?? BorderRadius.circular(5.0);
 
     final EdgeInsets targetPadding = padding ??
-        EdgeInsets.all(mediaQueryData.size.width * _defaultPaddingWidthPercent);
+        EdgeInsets.all(
+            mediaQueryData.size.width * _kDefaultPaddingWidthPercent);
+
+    final AlignmentGeometry targetAlignment = alignment ?? Alignment.center;
 
     Widget current = Material(
       color: targetBackgroundColor,
@@ -62,7 +65,7 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
     );
 
     current = Container(
-      alignment: alignment,
+      alignment: targetAlignment,
       padding: targetPadding,
       child: current,
     );
