@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'dialog_view_wrapper.dart';
 
-abstract class FDialogViewWrapper {
-  Widget wrap(BuildContext context, Widget widget);
-}
-
 abstract class FDialogView {
   void applyDialog(FDialog dialog);
 }
@@ -20,6 +16,10 @@ mixin FDialogViewMixin implements FDialogView {
       dialog.dialogViewWrapper = FSimpleDialogViewWrapper();
     }
   }
+}
+
+abstract class FDialogViewWrapper {
+  Widget wrap(BuildContext context, Widget widget);
 }
 
 class FDialog {
@@ -66,7 +66,7 @@ class FDialog {
     );
   }
 
-  _InternalWidgetState checkState() {
+  _InternalWidgetState _checkState() {
     _InternalWidgetState state = _globalKey.currentState;
     if (state != null && state.mounted) {
       return state;
@@ -100,7 +100,7 @@ class FDialog {
 
   /// 关闭窗口
   void dismiss() {
-    final _InternalWidgetState state = checkState();
+    final _InternalWidgetState state = _checkState();
     if (state != null && _isShowing) {
       _isShowing = false;
       Navigator.of(state.context).pop();
