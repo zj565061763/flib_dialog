@@ -5,6 +5,9 @@ import 'dialog.dart';
 const Color _kDefaultBackgroundColor = Colors.white;
 const double _kDefaultElevation = 0;
 const double _kDefaultPaddingWidthPercent = 0.1;
+const ShapeBorder _kDefaultShape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+);
 
 class FOriginalDialogViewWrapper implements FDialogViewWrapper {
   @override
@@ -16,7 +19,7 @@ class FOriginalDialogViewWrapper implements FDialogViewWrapper {
 class FSimpleDialogViewWrapper implements FDialogViewWrapper {
   final Color backgroundColor;
   final double elevation;
-  final BorderRadiusGeometry borderRadius;
+  final ShapeBorder shape;
 
   final EdgeInsetsGeometry padding;
   final AlignmentGeometry alignment;
@@ -24,7 +27,7 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
   FSimpleDialogViewWrapper({
     this.backgroundColor,
     this.elevation,
-    this.borderRadius,
+    this.shape,
     this.padding,
     this.alignment,
   });
@@ -45,8 +48,7 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
     final double targetElevation =
         elevation ?? dialogTheme.elevation ?? _kDefaultElevation;
 
-    final BorderRadiusGeometry targetBorderRadius =
-        borderRadius ?? BorderRadius.circular(5.0);
+    final ShapeBorder targetShape = shape ?? _kDefaultShape;
 
     final EdgeInsets targetPadding = padding ??
         EdgeInsets.all(
@@ -57,9 +59,7 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
     Widget current = Material(
       color: targetBackgroundColor,
       elevation: targetElevation,
-      shape: RoundedRectangleBorder(
-        borderRadius: targetBorderRadius,
-      ),
+      shape: targetShape,
       type: MaterialType.card,
       child: child,
     );

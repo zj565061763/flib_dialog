@@ -31,7 +31,9 @@ class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
     if (dialog.dialogViewWrapper == null) {
       dialog.dialogViewWrapper = FSimpleDialogViewWrapper(
         alignment: Alignment.bottomCenter,
-        borderRadius: BorderRadius.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0.0),
+        ),
         padding: EdgeInsets.zero,
       );
     }
