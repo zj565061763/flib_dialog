@@ -102,10 +102,13 @@ class FDialog {
 
   /// 关闭窗口
   void dismiss() {
-    final _InternalWidgetState state = _checkState();
-    if (state != null && _isShowing) {
+    if (_isShowing) {
       _isShowing = false;
-      Navigator.of(state.context).pop();
+
+      final _InternalWidgetState state = _checkState();
+      if (state != null) {
+        Navigator.of(state.context).pop();
+      }
     }
   }
 }
