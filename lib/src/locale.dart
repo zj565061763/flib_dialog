@@ -49,14 +49,17 @@ abstract class _LibLocale {
 }
 
 class _LibLocale_ZH_CN implements _LibLocale {
+  @override
   String cancel() {
     return '取消';
   }
 
+  @override
   String confirm() {
     return '确定';
   }
 
+  @override
   String tips() {
     return '提示';
   }
@@ -68,14 +71,17 @@ class _LibLocale_ZH_CN implements _LibLocale {
 }
 
 class _LibLocale_ZH_TW implements _LibLocale {
+  @override
   String cancel() {
     return '取消';
   }
 
+  @override
   String confirm() {
     return '確定';
   }
 
+  @override
   String tips() {
     return '提示';
   }
