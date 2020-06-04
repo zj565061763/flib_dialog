@@ -36,6 +36,8 @@ class FDialog {
   FDialogViewWrapper dialogViewWrapper = FDialogViewWrapper.defaultWrapper;
 
   Widget _widget;
+  Widget _showingWidget;
+
   bool _isShowing = false;
 
   bool get isShowing => _isShowing;
@@ -43,6 +45,8 @@ class FDialog {
   Widget _widgetBuilder(BuildContext context) {
     return _InternalWidget(
       builder: (context) {
+        _showingWidget = _widget;
+
         if (_widget is FDialogView) {
           final FDialogView dialogView = _widget as FDialogView;
           dialogView.applyDialog(this);
@@ -90,9 +94,14 @@ class FDialog {
 
     _isShowing = true;
     _widget = widget;
+
     showDialog(context: context, builder: _widgetBuilder).whenComplete(() {
       _isShowing = false;
-      _widget = null;
+
+      if (_showingWidget == _widget) {
+        _widget = null;
+        _showingWidget = null;
+      }
 
       if (onDismissListener != null) {
         onDismissListener();
