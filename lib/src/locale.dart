@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 class FLibDialogLocale {
   FLibDialogLocale._();
 
-  static String cancel(BuildContext context, {Locale locale}) {
+  static String cancel(BuildContext context, {Locale? locale}) {
     return _LibLocale(context, locale).cancel();
   }
 
-  static String confirm(BuildContext context, {Locale locale}) {
+  static String confirm(BuildContext context, {Locale? locale}) {
     return _LibLocale(context, locale).confirm();
   }
 
-  static String tips(BuildContext context, {Locale locale}) {
+  static String tips(BuildContext context, {Locale? locale}) {
     return _LibLocale(context, locale).tips();
   }
 
-  static String pleaseSelect(BuildContext context, {Locale locale}) {
+  static String pleaseSelect(BuildContext context, {Locale? locale}) {
     return _LibLocale(context, locale).pleaseSelect();
   }
 }
 
 abstract class _LibLocale {
-  factory _LibLocale(BuildContext context, Locale locale) {
+  factory _LibLocale(BuildContext? context, Locale? locale) {
     if (locale == null && context != null) {
       locale = Localizations.localeOf(context);
     }
