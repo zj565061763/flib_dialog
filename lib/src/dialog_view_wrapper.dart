@@ -17,12 +17,12 @@ class FOriginalDialogViewWrapper implements FDialogViewWrapper {
 }
 
 class FSimpleDialogViewWrapper implements FDialogViewWrapper {
-  final Color backgroundColor;
-  final double elevation;
-  final ShapeBorder shape;
+  final Color? backgroundColor;
+  final double? elevation;
+  final ShapeBorder? shape;
 
-  final EdgeInsetsGeometry padding;
-  final AlignmentGeometry alignment;
+  final EdgeInsetsGeometry? padding;
+  final AlignmentGeometry? alignment;
 
   FSimpleDialogViewWrapper({
     this.backgroundColor,
@@ -34,9 +34,6 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
 
   @override
   Widget wrap(BuildContext context, Widget child) {
-    assert(child != null);
-    assert(context != null);
-
     final DialogTheme dialogTheme = DialogTheme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
@@ -50,7 +47,7 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
 
     final ShapeBorder targetShape = shape ?? _kDefaultShape;
 
-    final EdgeInsets targetPadding = padding ??
+    final EdgeInsetsGeometry targetPadding = padding ??
         EdgeInsets.all(
             mediaQueryData.size.width * _kDefaultPaddingWidthPercent);
 
@@ -70,11 +67,13 @@ class FSimpleDialogViewWrapper implements FDialogViewWrapper {
       child: current,
     );
 
-    if (targetPadding.left == 0 &&
-        targetPadding.top == 0 &&
-        targetPadding.right == 0 &&
-        targetPadding.bottom == 0) {
-      current = SafeArea(child: current);
+    if (targetPadding is EdgeInsets) {
+      if (targetPadding.left == 0 &&
+          targetPadding.top == 0 &&
+          targetPadding.right == 0 &&
+          targetPadding.bottom == 0) {
+        current = SafeArea(child: current);
+      }
     }
 
     return current;
