@@ -7,19 +7,19 @@ import 'locale.dart';
 typedef OnClickMenu = Function(int index);
 
 class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
-  final String title;
-  final TextStyle titleTextStyle;
+  final String? title;
+  final TextStyle? titleTextStyle;
 
   final List<dynamic> menus;
-  final TextStyle menusTextStyle;
+  final TextStyle? menusTextStyle;
 
-  final OnClickMenu onClickMenu;
+  final OnClickMenu? onClickMenu;
   final int selectedIndex;
 
   FDialogMenuView({
     this.title = '',
     this.titleTextStyle,
-    this.menus,
+    required this.menus,
     this.menusTextStyle,
     this.onClickMenu,
     this.selectedIndex = -1,
@@ -43,17 +43,14 @@ class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
     BuildContext context,
     ThemeData theme,
     DialogTheme dialogTheme,
+    String titleText,
   ) {
     final List<Widget> listTitle = [];
-
-    String titleText = title;
-    if (titleText == '') {
-      titleText = FLibDialogLocale.pleaseSelect(context);
-    }
+    if (titleText == '') titleText = FLibDialogLocale.pleaseSelect(context);
 
     final TextStyle targetTitleTextStyle = titleTextStyle ??
         dialogTheme.titleTextStyle ??
-        theme.textTheme.title ??
+        theme.textTheme.headline6 ??
         TextStyle(
           fontSize: 16,
           color: Color(0xFF333333),
@@ -86,7 +83,7 @@ class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
     widgetClose = GestureDetector(
       child: widgetClose,
       onTap: () {
-        dialog.dismiss();
+        dialog?.dismiss();
       },
     );
 
@@ -169,7 +166,7 @@ class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
       onTap: onClickMenu == null
           ? null
           : () {
-              onClickMenu(index);
+              onClickMenu!(index);
             },
     );
   }
@@ -201,8 +198,8 @@ class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
     final List<Widget> list = [];
 
     if (title != null) {
-      list.add(buildTitle(context, theme, dialogTheme));
-      list.add(buildDivider(null));
+      list.add(buildTitle(context, theme, dialogTheme, title!));
+      list.add(buildDivider(EdgeInsets.zero));
     }
 
     if (menus.length > 0) {
