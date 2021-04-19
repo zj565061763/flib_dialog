@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'dialog.dart';
 
 class FDialogAlertView extends StatelessWidget with FDialogViewMixin {
-  final Widget title;
-  final TextStyle titleTextStyle;
+  final Widget? title;
+  final TextStyle? titleTextStyle;
 
-  final Widget content;
-  final TextStyle contentTextStyle;
-  final EdgeInsetsGeometry contentPadding;
+  final Widget? content;
+  final TextStyle? contentTextStyle;
+  final EdgeInsetsGeometry? contentPadding;
 
-  final List<Widget> actions;
-  final Widget actionsDividerTop;
-  final Widget actionsDivider;
+  final List<Widget>? actions;
+  final Widget? actionsDividerTop;
+  final Widget? actionsDivider;
   final double actionsHeight;
 
   FDialogAlertView({
@@ -44,7 +44,7 @@ class FDialogAlertView extends StatelessWidget with FDialogViewMixin {
     );
   }
 
-  Widget transformActions(List<Widget> widgets, BuildContext context) {
+  Widget transformActions(List<Widget> widgets) {
     final List<Widget> list = [];
 
     for (int i = 0; i < widgets.length; i++) {
@@ -70,21 +70,21 @@ class FDialogAlertView extends StatelessWidget with FDialogViewMixin {
   }
 
   Widget buildActionsDivider() {
-    return Container(
-      color: Color(0xFF999999),
-      width: 0.3,
-      height: double.infinity,
-    );
+    return actionsDivider ??
+        Container(
+          color: Color(0xFF999999),
+          width: 0.3,
+          height: double.infinity,
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     final DialogTheme dialogTheme = DialogTheme.of(context);
-
     final List<Widget> list = [];
 
     if (title != null) {
-      final Widget widgetTitle = wrapTitle(title);
+      final Widget widgetTitle = wrapTitle(title!);
 
       final TextStyle targetTextStyle = titleTextStyle ??
           dialogTheme.titleTextStyle ??
@@ -100,7 +100,7 @@ class FDialogAlertView extends StatelessWidget with FDialogViewMixin {
     }
 
     if (content != null) {
-      Widget widgetContent = wrapContent(content);
+      Widget widgetContent = wrapContent(content!);
 
       final EdgeInsetsGeometry targetPadding = contentPadding ??
           EdgeInsets.only(
@@ -126,18 +126,14 @@ class FDialogAlertView extends StatelessWidget with FDialogViewMixin {
       ));
     }
 
-    if (actions != null && actions.isNotEmpty) {
+    if (actions != null && actions!.isNotEmpty) {
       if (actionsDividerTop == null) {
         list.add(buildActionsTopDivider());
       } else {
-        list.add(actionsDividerTop);
+        list.add(actionsDividerTop!);
       }
 
-      final Widget actionsTransform = transformActions(
-        actions,
-        context,
-      );
-
+      final Widget actionsTransform = transformActions(actions!);
       list.add(SizedBox(
         child: actionsTransform,
         height: actionsHeight,
