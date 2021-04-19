@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class FDialogAction extends StatelessWidget {
   final Widget child;
-  final TextStyle textStyle;
-  final VoidCallback onClick;
+  final TextStyle? textStyle;
+  final VoidCallback? onClick;
 
   final AlignmentGeometry alignment;
   final EdgeInsetsGeometry padding;
   final BorderRadius borderRadius;
 
   FDialogAction({
-    this.child,
+    required this.child,
     this.textStyle,
     this.onClick,
     this.alignment = Alignment.center,
