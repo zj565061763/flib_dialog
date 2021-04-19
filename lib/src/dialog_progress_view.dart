@@ -6,10 +6,10 @@ class FDialogProgressView extends StatelessWidget with FDialogViewMixin {
   final String content;
   final double progressSize;
   final double padding;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   FDialogProgressView({
-    this.content,
+    this.content = "",
     this.progressSize = 26,
     this.padding = 13,
     this.textStyle,
@@ -27,13 +27,11 @@ class FDialogProgressView extends StatelessWidget with FDialogViewMixin {
       height: progressSize,
     ));
 
-    if (content != null) {
+    if (content.isNotEmpty) {
       list.add(SizedBox(
         height: 10,
       ));
-    }
 
-    if (content != null) {
       list.add(Text(
         content,
         style: textStyle ??
