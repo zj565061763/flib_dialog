@@ -12,9 +12,6 @@ mixin FDialogViewMixin implements FDialogView {
   @override
   void applyDialog(FDialog dialog) {
     this.dialog = dialog;
-    if (dialog.dialogViewWrapper == null) {
-      dialog.dialogViewWrapper = FDialogViewWrapper.defaultWrapper;
-    }
   }
 }
 
