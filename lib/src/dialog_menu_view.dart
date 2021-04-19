@@ -23,7 +23,7 @@ class FDialogMenuView extends StatelessWidget with FDialogViewMixin {
     this.menusTextStyle,
     this.onClickMenu,
     this.selectedIndex = -1,
-  }) : assert(menus != null);
+  });
 
   @override
   void applyDialog(FDialog dialog) {
